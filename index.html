@@ -3,10 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mi Blog Literario · Edición 70s</title>
+  <title>Blog Literario · La Divina Comedia</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- Titulares estilo 70s + cuerpo clásico -->
   <link href="https://fonts.googleapis.com/css2?family=Shrikhand&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,700;1,9..144,300&display=swap" rel="stylesheet">
   <style>
     :root{
@@ -15,28 +14,90 @@
       --violet-500:#7f2fb0;
       --violet-300:#b289e3;
       --violet-200:#dac6f6;
-      --cream:#fff8ef;
-      --paper:#fff4e6;
+      --parchment:#fef9f1;
       --ink:#2b2032;
-      --sun:#ffd166;
-      --leaf:#3fa27a;
+      --hell:#b31b1b;
+      --purg:#d8a22d;
+      --parad:#3fa27a;
       --radius:18px;
       --shadow:0 10px 24px rgba(59,10,87,.18), 0 2px 6px rgba(0,0,0,.06);
     }
 
-    /* Fondo retro con margaritas hechas en CSS */
     body{
-      margin:0; color:var(--ink); background:
-        radial-gradient(50% 50% at 50% 50%, rgba(255,255,255,.55) 0 60%, rgba(255,255,255,0) 61%) ,
-        repeating-linear-gradient(135deg, #efe3ff 0 10px, #f6edff 10px 20px);
-      background-color:var(--cream);
-      font-family: "Fraunces", serif; 
-      line-height:1.6;
+      margin:0; background:var(--parchment); color:var(--ink);
+      font-family:"Fraunces", serif; line-height:1.6;
     }
 
-    /* patrón de margaritas sutil encima */
-    body::before{
-      content:""; position:fixed; inset:0; pointer-events:none; opacity:.25; mix-blend-mode:multiply;
+    header{
+      text-align:center; padding:70px 24px 56px;
+      background: linear-gradient(135deg, var(--violet-900), var(--violet-500));
+      color:white; box-shadow:var(--shadow);
+    }
+    .brand{font-family:"Shrikhand", cursive; font-size:clamp(36px,6vw,72px); margin:0;}
+    .subtitle{max-width:720px;margin:.5rem auto 1rem;color:#f8eefe;}
+
+    nav{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+    nav a{color:#fff;text-decoration:none;background:var(--violet-500);padding:10px 16px;border-radius:999px;font-weight:700;box-shadow:var(--shadow);}    
+    nav a:hover{background:var(--violet-300);}
+
+    .wrap{max-width:1000px;margin:-40px auto 48px;padding:0 18px;}
+    .card{background:white;border:4px solid var(--violet-300);border-radius:var(--radius);padding:26px;box-shadow:var(--shadow);margin-bottom:20px;}
+    .card h2{font-family:"Shrikhand",cursive;color:var(--violet-700);}
+
+    .meta{color:#6b5a76;font-size:.95rem;margin-bottom:10px;}
+
+    .inferno{border-left:12px solid var(--hell);}
+    .purgatorio{border-left:12px solid var(--purg);}
+    .paradiso{border-left:12px solid var(--parad);}
+
+    footer{text-align:center;padding:38px 16px;color:#5e4c6f;background:linear-gradient(180deg,#f2e9ff,#efe6ff);border-top:4px solid var(--violet-300);}    
+  </style>
+  <!-- Fuente adicional para personalización -->
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    /* ====== Capas de personalización ======
+       - Temas (inferno / purgatorio / paradiso / morado70s / sepia)
+       - Fondo con margaritas (toggle)
+       - Tipografías y tamaños
+       - Panel de control flotante
+    */
+
+    :root{
+      --bg: var(--parchment);
+      --card-bg: #ffffff;
+      --accent: var(--violet-500);
+      --accent-2: var(--violet-300);
+    }
+
+    /* Temas por data-theme */
+    [data-theme="morado70s"]{
+      --bg: var(--parchment);
+      --accent: var(--violet-500);
+      --accent-2: var(--violet-300);
+    }
+    [data-theme="inferno"]{
+      --bg: #fff5f5; --accent: var(--hell); --accent-2: #f29b9b;
+    }
+    [data-theme="purgatorio"]{
+      --bg: #fff9eb; --accent: var(--purg); --accent-2: #f4cf7a;
+    }
+    [data-theme="paradiso"]{
+      --bg: #f4fff8; --accent: var(--parad); --accent-2: #a9e4c9;
+    }
+    [data-theme="sepia"]{
+      --bg: #f7f1e1; --accent: #7a5b3a; --accent-2: #c9b39a;
+    }
+
+    body{ background: var(--bg); }
+    nav a{ background: var(--accent); border-color: var(--accent-2); }
+    nav a:hover{ background: var(--accent-2); }
+    .card{ border-color: var(--accent-2); }
+    .card h2{ color: var(--accent); }
+    footer{ border-top-color: var(--accent-2); }
+
+    /* Fondo de margaritas (opcional) */
+    body.daisies::before{
+      content:""; position:fixed; inset:0; pointer-events:none; opacity:.22; mix-blend-mode:multiply;
       background-image:
         radial-gradient(circle at 40px 40px, #ffffff 0 8px, transparent 9px),
         conic-gradient(from 0deg at 40px 40px,
@@ -46,212 +107,201 @@
                        #ffffff 60deg 70deg, transparent 70deg 80deg,
                        #ffffff 80deg 90deg, transparent 90deg 360deg);
       background-size: 140px 140px, 140px 140px;
-      background-position: 0 0, 0 0;
     }
 
-    header{
-      position:relative; overflow:hidden; color:white; text-align:center; padding:70px 24px 56px;
-      background:
-        radial-gradient(circle at 15% 10%, var(--violet-300) 0 15%, transparent 16%),
-        radial-gradient(circle at 85% -10%, var(--sun) 0 20%, transparent 21%),
-        linear-gradient(135deg, var(--violet-900), var(--violet-500));
-      box-shadow:var(--shadow);
+    /* Tipografías dinámicas */
+    [data-font="fraunces"]{ font-family:"Fraunces", serif; }
+    [data-font="garamond"]{ font-family:"EB Garamond", serif; }
+    [data-font="georgia"]{ font-family: Georgia, "Times New Roman", serif; }
+
+    /* Panel flotante */
+    .customizer-toggle{
+      position: fixed; right: 18px; bottom: 18px; z-index: 9999;
+      background: var(--accent); color: #fff; border: none; border-radius: 999px;
+      width: 56px; height: 56px; box-shadow: var(--shadow); font-size: 22px; cursor: pointer;
     }
-
-    .tape{
-      position:absolute; inset:auto -30px -30px auto; transform:rotate(-6deg);
-      padding:10px 18px; background: #fdf9d9; color: #5a4c2c; font: 700 14px/1.2 "Fraunces", serif;
-      border:2px solid #e3dcae; box-shadow:0 6px 12px rgba(0,0,0,.15);
+    .customizer{
+      position: fixed; right: 18px; bottom: 84px; z-index: 9999; width: 320px;
+      max-width: calc(100% - 36px); background: #fff; border: 3px solid var(--accent-2);
+      border-radius: 16px; box-shadow: var(--shadow); padding: 14px 16px; display: none;
     }
-
-    .brand{ font-family:"Shrikhand", cursive; font-size: clamp(36px, 6vw, 72px); letter-spacing:1px; margin:0; text-shadow: 0 6px 0 rgba(0,0,0,.12);}
-    .subtitle{margin:.5rem auto 1.2rem; max-width:720px; font-weight:400; color:#f8eefe}
-
-    nav{ display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:18px; }
-    nav a{
-      text-decoration:none; color:#3b0a57; background:white; border:3px solid var(--violet-300);
-      padding:10px 16px; border-radius:999px; font-weight:700; box-shadow:var(--shadow);
-      transition: transform .12s ease, box-shadow .12s ease, background .2s;
-    }
-    nav a:hover{ transform:translateY(-2px); background:var(--violet-200); }
-
-    .wrap{ max-width:1000px; margin:-40px auto 48px; padding:0 18px; }
-
-    /* tarjeta estilo papel envejecido */
-    .card{
-      background:
-        repeating-linear-gradient(180deg, rgba(255,255,255,.8) 0 2px, rgba(255,255,255,.8) 3px 4px),
-        linear-gradient(180deg, #fffdf8, var(--paper));
-      border:4px solid var(--violet-300); border-radius: var(--radius); padding:26px; box-shadow:var(--shadow);
-    }
-
-    .grid{ display:grid; grid-template-columns:1fr; gap:22px; }
-    @media(min-width:860px){ .grid{ grid-template-columns:1.2fr .8fr; } }
-
-    .post h2{ font-family:"Shrikhand", cursive; color:var(--violet-700); margin:.2rem 0 .6rem; font-size: clamp(24px, 3.2vw, 40px); }
-    .meta{ color:#6b5a76; font-size:.95rem; margin-bottom:10px; }
-    .post p{ margin:.6rem 0 1rem; }
-
-    /* chips retro */
-    .chip{ display:inline-block; background:var(--violet-200); color:var(--violet-900); border:2px solid var(--violet-300); padding:6px 10px; border-radius:999px; font-weight:700; margin:4px 6px 0 0; }
-
-    /* sidebar */
-    .sidebar .widget{ padding:18px; border-radius:var(--radius); background:white; border:3px dashed var(--violet-300); }
-    .sidebar h3{ font-family:"Shrikhand", cursive; color:var(--violet-700); margin:0 0 10px; }
-
-    /* separador con margarita */
-    .divider{ display:flex; align-items:center; gap:12px; margin:20px 0; color:#6b5a76; }
-    .divider::before, .divider::after{ content:""; height:2px; background:linear-gradient(90deg, transparent, var(--violet-300), transparent); flex:1; }
-
-    /* Pegatina margarita */
-    .daisy{
-      --s: 36px; position:relative; width:var(--s); height:var(--s); display:inline-block;
-      filter: drop-shadow(0 3px 6px rgba(0,0,0,.18));
-    }
-    .daisy::before{ /* pétalos */
-      content:""; position:absolute; inset:0; border-radius:50%;
-      background: conic-gradient(from 0deg,#fff 0 10deg, transparent 10deg 20deg) ,
-                  conic-gradient(from 20deg,#fff 0 10deg, transparent 10deg 20deg);
-      -webkit-mask: radial-gradient(circle at 50% 50%, transparent 0 26%, black 26% 100%);
-              mask: radial-gradient(circle at 50% 50%, transparent 0 26%, black 26% 100%);
-    }
-    .daisy::after{ /* centro */
-      content:""; position:absolute; inset:30% 30%; border-radius:50%; background: radial-gradient(circle at 30% 30%, #ffe07b, #f7b500);
-      box-shadow:0 0 0 2px rgba(0,0,0,.05) inset;
-    }
-
-    .hero-note{
-      display:inline-flex; align-items:center; gap:10px; padding:10px 14px; background:rgba(255,255,255,.92); border:3px solid var(--violet-300); border-radius:12px; color:var(--violet-900); font-weight:700;
-    }
-
-    footer{
-      text-align:center; padding:38px 16px; color:#5e4c6f; background:linear-gradient(180deg, #f2e9ff, #efe6ff);
-      border-top:4px solid var(--violet-300);
-    }
-    .footer-daisies{ display:flex; justify-content:center; gap:12px; margin:10px 0 6px; }
-
-    /* Botón CTA 70s */
-    .cta{
-      --bg: var(--violet-500);
-      display:inline-block; text-decoration:none; color:white; background:var(--bg); border:4px solid var(--violet-300);
-      padding:12px 20px; border-radius:14px; font-weight:900; letter-spacing:.5px; box-shadow:var(--shadow);
-      transform: skewX(-6deg); transition: transform .1s ease, filter .2s ease; }
-    .cta:hover{ transform: skewX(-6deg) translateY(-2px) scale(1.01); filter:brightness(1.05); }
-
-    /* Accesibilidad mínima */
-    a:focus-visible, button:focus-visible{ outline:3px dashed var(--sun); outline-offset:3px; border-radius:8px; }
+    .customizer.open{ display:block; }
+    .customizer h3{ margin: 4px 0 8px; font-family: "Shrikhand", cursive; color: var(--accent); }
+    .customizer label{ font-weight: 700; display:block; margin: 8px 0 6px; }
+    .row{ display:flex; gap:8px; flex-wrap:wrap; }
+    .row > *{ flex:1; min-width: 120px; }
+    .swatch{ display:inline-block; width:28px; height:28px; border-radius:6px; border:2px solid #0002; cursor:pointer; margin-right:6px; }
+    .help{ color:#6b5a76; font-size:.9rem; }
+    .inline-edit{ outline: 2px dashed transparent; }
+    .inline-edit[contenteditable="true"]:focus{ outline-color: var(--accent-2); background:#fff; }
   </style>
 </head>
 <body>
   <header>
-    <div class="tape">Edición 70s</div>
-    <h1 class="brand">Mi Blog Literario</h1>
-    <p class="subtitle">Crónicas, reseñas y fragmentos con vibra retro — morado, flores y mucho groove ✨</p>
-    <nav aria-label="principal">
-      <a href="#inicio">Inicio</a>
-      <a href="#resenas">Reseñas</a>
-      <a href="#poesia">Poesía</a>
-      <a href="#opinion">Opinión</a>
+    <h1 class="brand inline-edit" id="site-title" contenteditable="true">Blog Literario · La Divina Comedia</h1>
+    <p class="subtitle inline-edit" id="site-subtitle" contenteditable="true">Un recorrido literario en 8 escritos, viajando por Infierno, Purgatorio y Paraíso</p>
+    <nav>
+      <a href="#infierno">Infierno</a>
+      <a href="#purgatorio">Purgatorio</a>
+      <a href="#paradiso">Paraíso</a>
       <a href="#contacto">Contacto</a>
     </nav>
-    <div style="margin-top:22px;">
-      <span class="hero-note"><span class="daisy"></span> Nuevo: antología setentera</span>
-    </div>
   </header>
 
   <main class="wrap">
-    <section class="grid" id="inicio" aria-label="contenido principal">
-      <article class="card post">
-        <h2>La tinta púrpura de los setenta</h2>
-        <p class="meta">Publicado el 8 de septiembre de 2025 · Etiquetas: <span class="chip">#70s</span> <span class="chip">#moras</span> <span class="chip">#margaritas</span></p>
-        <p>Bienvenido a este rincón literario con perfume a vinilo. Aquí conviven <em>reseñas</em>, <em>ensayos</em> y <em>fragmentos</em> que bailan entre tonos morados, giran como un tocadiscos y florecen entre margaritas. Es un homenaje a las tipografías redondas, a las portadas psicodélicas y a la calidez de las páginas envejecidas.</p>
-        <div class="divider">∿</div>
-        <p><strong>Idea creativa:</strong> cada mes, un número temático inspirado en un clásico de los setenta. ¿Te gustaría proponer el próximo?</p>
-        <p>
-          <a class="cta" href="#contacto" title="Escríbeme">Proponer tema</a>
-        </p>
-      </article>
+    <!-- Primer escrito -->
+    <article class="card inferno" id="infierno">
+      <h2>Escrito 1 · Descendiendo al Infierno</h2>
+      <p class="meta">Publicado el 8 de septiembre de 2025 — Sección: Infierno</p>
+      <p>En este primer escrito exploramos el inicio del viaje de Dante, acompañado de Virgilio, descendiendo hacia los círculos del Infierno. Un análisis que mezcla símbolos, versos y reflexiones actuales.</p>
+    </article>
 
-      <aside class="sidebar" aria-label="barra lateral">
-        <div class="widget">
-          <h3>Archivo</h3>
-          <ul>
-            <li>2025 · Septiembre — <em>La tinta púrpura</em></li>
-            <li>2025 · Agosto — <em>Voces en super‑8</em></li>
-            <li>2025 · Julio — <em>Papeles de lavanda</em></li>
-          </ul>
-        </div>
-        <div class="widget" style="margin-top:16px;">
-          <h3>Suscripción</h3>
-          <p>Recibe los nuevos textos los sábados (como buen ritual setentero).</p>
-          <form onsubmit="event.preventDefault(); alert('¡Gracias por suscribirte!');">
-            <label for="email" class="sr-only">Correo electrónico</label>
-            <input id="email" type="email" placeholder="tu@email.com" required
-              style="width:100%; padding:12px; border-radius:10px; border:2px solid var(--violet-300); margin-bottom:8px;">
-            <button class="cta" style="width:100%; text-align:center;">Suscribirme</button>
-          </form>
-        </div>
-      </aside>
-    </section>
+    <!-- Aquí podrás ir agregando más escritos -->
+    <article class="card purgatorio" id="purgatorio">
+      <h2>Escrito 2 · (Próximamente)</h2>
+      <p class="meta">Sección: Purgatorio</p>
+      <p>Aquí podrás publicar el segundo texto de tu serie cuando lo tengas listo.</p>
+    </article>
 
-    <section class="grid" id="resenas" style="margin-top:26px;">
-      <article class="card post">
-        <h2>Reseña · Un morado indefinible</h2>
-        <p class="meta">Por J. P. — 12 min de lectura</p>
-        <p>Entre las páginas vibra un eco de sintetizadores. Los personajes hablan con la cadencia de los viejos anuncios radiales, y cada capítulo huele a tinta fresca y papel satinado. Un libro que despliega pétalos y vuelve a cerrar, como una margarita en cámara lenta.</p>
-      </article>
-      <article class="card post">
-        <h2>Poesía · Flor de viernes</h2>
-        <p class="meta">Micropoemas</p>
-        <p>Pliegos morados / vinilo que cruje / tus ojos, viernes / margarita en la lluvia.</p>
-      </article>
-    </section>
+    <article class="card paradiso" id="paradiso">
+      <h2>Escrito 3 · (Próximamente)</h2>
+      <p class="meta">Sección: Paraíso</p>
+      <p>Aquí podrás publicar el tercer texto, alusivo al ascenso hacia el Paraíso.</p>
+    </article>
 
-    <section id="poesia" class="grid" style="margin-top:26px;">
-      <article class="card post">
-        <h2>Fragmento · Cassette lado B</h2>
-        <p class="meta">Diario de un lector</p>
-        <p>Rebobino la tarde con un lápiz. La cinta murmura palabras que creí olvidadas. En la mesa, una margarita de papel hace sombras redondas sobre la tapa del cuaderno.</p>
-      </article>
-      <article class="card post">
-        <h2>Ensayo · Tipografías con groove</h2>
-        <p class="meta">Diseño editorial</p>
-        <p>Las curvas generosas y los contrastes marcados de las letras setenteras invitan a leer con calma. La tipografía no solo dice: también canta.</p>
-      </article>
-    </section>
+    <!-- ... hasta llegar a 8 escritos -->
 
-    <section id="opinion" style="margin-top:26px;">
-      <article class="card post">
-        <h2>Opinión · ¿Por qué el morado enamora?</h2>
-        <p class="meta">Color y memoria</p>
-        <p>El morado es la complicidad de la noche con la tinta. Es un puente entre la sobriedad y el juego, entre la nostalgia y la promesa. Por eso este blog lo toma como bandera.</p>
-      </article>
-    </section>
-
-    <section id="contacto" style="margin-top:26px;" class="card">
-      <h2 style="font-family:'Shrikhand',cursive; color:var(--violet-700); margin-top:0;">Contacto</h2>
-      <p>¿Quieres colaborar, enviar un texto o proponer un tema? Escríbeme:</p>
+    <section id="contacto" class="card">
+      <h2>Contacto</h2>
+      <p>¿Quieres comentar o colaborar en la serie de la Divina Comedia? Escríbeme:</p>
       <ul>
-        <li>Correo: <a href="mailto:editor@blog70s.example">editor@blog70s.example</a></li>
-        <li>Instagram: <a href="#">@blog70s</a></li>
+        <li>Correo: <a href="mailto:editor@divina-blog.example">editor@divina-blog.example</a></li>
       </ul>
     </section>
   </main>
 
   <footer>
-    <div class="footer-daisies">
-      <span class="daisy" aria-hidden="true"></span>
-      <span class="daisy" aria-hidden="true" style="--s:28px"></span>
-      <span class="daisy" aria-hidden="true" style="--s:36px"></span>
-      <span class="daisy" aria-hidden="true" style="--s:28px"></span>
-      <span class="daisy" aria-hidden="true"></span>
-    </div>
-    <p>© 2025 · Mi Blog Literario · Hecho con amor morado y margaritas ✿</p>
+    <p>© 2025 · Blog Literario La Divina Comedia · Infierno, Purgatorio y Paraíso</p>
   </footer>
+  <!-- Controles de personalización -->
+  <button class="customizer-toggle" aria-label="Abrir personalización" title="Personalizar">⚙️</button>
+  <aside class="customizer" aria-label="Panel de personalización" id="customizer">
+    <h3>Personaliza tu blog</h3>
+    <div class="row">
+      <div>
+        <label for="theme">Tema</label>
+        <select id="theme">
+          <option value="morado70s">Morado 70s</option>
+          <option value="inferno">Inferno</option>
+          <option value="purgatorio">Purgatorio</option>
+          <option value="paradiso">Paraíso</option>
+          <option value="sepia">Sepia</option>
+        </select>
+      </div>
+      <div>
+        <label for="font">Tipografía</label>
+        <select id="font">
+          <option value="fraunces">Fraunces (actual)</option>
+          <option value="garamond">EB Garamond</option>
+          <option value="georgia">Georgia</option>
+        </select>
+      </div>
+    </div>
 
-  <style>
-    /* utilidades pequeñas */
-    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-  </style>
+    <div class="row">
+      <div>
+        <label for="accent">Color acento</label>
+        <input id="accent" type="color" value="#7f2fb0" />
+      </div>
+      <div>
+        <label for="textSize">Tamaño de texto</label>
+        <input id="textSize" type="range" min="90" max="120" value="100" />
+      </div>
+    </div>
+
+    <div class="row">
+      <div>
+        <label><input id="toggleDaisies" type="checkbox" /> Fondo con margaritas</label>
+      </div>
+      <div>
+        <label><input id="saveTitle" type="checkbox" checked /> Guardar título/subtítulo</label>
+      </div>
+    </div>
+
+    <p class="help">Los cambios se guardan en este navegador (localStorage). Puedes restablecer con el botón de abajo.</p>
+    <div class="row">
+      <button id="resetBtn">Restablecer</button>
+    </div>
+  </aside>
+
+  <script>
+    (function(){
+      const root = document.documentElement;
+      const body = document.body;
+      const toggle = document.querySelector('.customizer-toggle');
+      const panel = document.getElementById('customizer');
+      const selTheme = document.getElementById('theme');
+      const selFont = document.getElementById('font');
+      const inputAccent = document.getElementById('accent');
+      const rngText = document.getElementById('textSize');
+      const chkDaisies = document.getElementById('toggleDaisies');
+      const chkSaveTitle = document.getElementById('saveTitle');
+      const resetBtn = document.getElementById('resetBtn');
+      const titleEl = document.getElementById('site-title');
+      const subtitleEl = document.getElementById('site-subtitle');
+
+      const STORAGE_KEY = 'blog70s:settings';
+
+      function save(){
+        const data = {
+          theme: selTheme.value,
+          font: selFont.value,
+          accent: inputAccent.value,
+          textSize: rngText.value,
+          daisies: chkDaisies.checked,
+          title: chkSaveTitle.checked ? titleEl.innerText : null,
+          subtitle: chkSaveTitle.checked ? subtitleEl.innerText : null
+        };
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      }
+
+      function apply(data){
+        if(!data) return;
+        document.documentElement.setAttribute('data-theme', data.theme || 'morado70s');
+        document.documentElement.setAttribute('data-font', data.font || 'fraunces');
+        if(data.accent){ root.style.setProperty('--accent', data.accent); }
+        if(data.textSize){ root.style.fontSize = data.textSize + '%'; }
+        body.classList.toggle('daisies', !!data.daisies);
+        if(data.title){ titleEl.innerText = data.title; }
+        if(data.subtitle){ subtitleEl.innerText = data.subtitle; }
+        selTheme.value = data.theme || 'morado70s';
+        selFont.value = data.font || 'fraunces';
+        inputAccent.value = data.accent || '#7f2fb0';
+        rngText.value = data.textSize || 100;
+        chkDaisies.checked = !!data.daisies;
+      }
+
+      function load(){
+        try{ return JSON.parse(localStorage.getItem(STORAGE_KEY)); }catch(e){ return null; }
+      }
+
+      // Eventos
+      toggle.addEventListener('click', ()=> panel.classList.toggle('open'));
+      selTheme.addEventListener('change', ()=>{ document.documentElement.setAttribute('data-theme', selTheme.value); save(); });
+      selFont.addEventListener('change', ()=>{ document.documentElement.setAttribute('data-font', selFont.value); save(); });
+      inputAccent.addEventListener('input', ()=>{ root.style.setProperty('--accent', inputAccent.value); save(); });
+      rngText.addEventListener('input', ()=>{ root.style.fontSize = rngText.value + '%'; save(); });
+      chkDaisies.addEventListener('change', ()=>{ body.classList.toggle('daisies', chkDaisies.checked); save(); });
+      [titleEl, subtitleEl].forEach(el=> el.addEventListener('input', ()=>{ if(chkSaveTitle.checked) save(); }));
+      resetBtn.addEventListener('click', ()=>{
+        localStorage.removeItem(STORAGE_KEY);
+        location.reload();
+      });
+
+      // Inicialización
+      const data = load();
+      apply(Object.assign({ theme:'morado70s', font:'fraunces', accent:'#7f2fb0', textSize:100, daisies:true }, data));
+    })();
+  </script>
 </body>
 </html>
