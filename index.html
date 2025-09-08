@@ -4,304 +4,65 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Blog Literario · La Divina Comedia</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Shrikhand&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,700;1,9..144,300&display=swap" rel="stylesheet">
+  <meta name="description" content="Blog literario con estética morada y ambientación del Infierno de Dante. Serie de 8 escritos.">
   <style>
-    :root{
-      --violet-900:#3b0a57;
-      --violet-700:#5c1a7a;
-      --violet-500:#7f2fb0;
-      --violet-300:#b289e3;
-      --violet-200:#dac6f6;
-      --parchment:#fef9f1;
-      --ink:#2b2032;
-      --hell:#b31b1b;
-      --purg:#d8a22d;
-      --parad:#3fa27a;
-      --radius:18px;
-      --shadow:0 10px 24px rgba(59,10,87,.18), 0 2px 6px rgba(0,0,0,.06);
-    }
-
-    body{
-      margin:0; background:var(--parchment); color:var(--ink);
-      font-family:"Fraunces", serif; line-height:1.6;
-    }
-
-    header{
-      text-align:center; padding:70px 24px 56px;
-      background: linear-gradient(135deg, var(--violet-900), var(--violet-500));
-      color:white; box-shadow:var(--shadow);
-    }
-    .brand{font-family:"Shrikhand", cursive; font-size:clamp(36px,6vw,72px); margin:0;}
-    .subtitle{max-width:720px;margin:.5rem auto 1rem;color:#f8eefe;}
-
-    nav{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
-    nav a{color:#fff;text-decoration:none;background:var(--violet-500);padding:10px 16px;border-radius:999px;font-weight:700;box-shadow:var(--shadow);}    
-    nav a:hover{background:var(--violet-300);}
-
-    .wrap{max-width:1000px;margin:-40px auto 48px;padding:0 18px;}
-    .card{background:white;border:4px solid var(--violet-300);border-radius:var(--radius);padding:26px;box-shadow:var(--shadow);margin-bottom:20px;}
-    .card h2{font-family:"Shrikhand",cursive;color:var(--violet-700);}
-
-    .meta{color:#6b5a76;font-size:.95rem;margin-bottom:10px;}
-
-    .inferno{border-left:12px solid var(--hell);}
-    .purgatorio{border-left:12px solid var(--purg);}
-    .paradiso{border-left:12px solid var(--parad);}
-
-    footer{text-align:center;padding:38px 16px;color:#5e4c6f;background:linear-gradient(180deg,#f2e9ff,#efe6ff);border-top:4px solid var(--violet-300);}    
-  </style>
-  <!-- Fuente adicional para personalización -->
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-  <style>
-    /* ====== Capas de personalización ======
-       - Temas (inferno / purgatorio / paradiso / morado70s / sepia)
-       - Fondo con margaritas (toggle)
-       - Tipografías y tamaños
-       - Panel de control flotante
-    */
-
-    :root{
-      --bg: var(--parchment);
-      --card-bg: #ffffff;
-      --accent: var(--violet-500);
-      --accent-2: var(--violet-300);
-    }
-
-    /* Temas por data-theme */
-    [data-theme="morado70s"]{
-      --bg: var(--parchment);
-      --accent: var(--violet-500);
-      --accent-2: var(--violet-300);
-    }
-    [data-theme="inferno"]{
-      --bg: #fff5f5; --accent: var(--hell); --accent-2: #f29b9b;
-    }
-    [data-theme="purgatorio"]{
-      --bg: #fff9eb; --accent: var(--purg); --accent-2: #f4cf7a;
-    }
-    [data-theme="paradiso"]{
-      --bg: #f4fff8; --accent: var(--parad); --accent-2: #a9e4c9;
-    }
-    [data-theme="sepia"]{
-      --bg: #f7f1e1; --accent: #7a5b3a; --accent-2: #c9b39a;
-    }
-
-    body{ background: var(--bg); }
-    nav a{ background: var(--accent); border-color: var(--accent-2); }
-    nav a:hover{ background: var(--accent-2); }
-    .card{ border-color: var(--accent-2); }
-    .card h2{ color: var(--accent); }
-    footer{ border-top-color: var(--accent-2); }
-
-    /* Fondo de margaritas (opcional) */
-    body.daisies::before{
-      content:""; position:fixed; inset:0; pointer-events:none; opacity:.22; mix-blend-mode:multiply;
-      background-image:
-        radial-gradient(circle at 40px 40px, #ffffff 0 8px, transparent 9px),
-        conic-gradient(from 0deg at 40px 40px,
-                       #ffffff 0 10deg, transparent 10deg 20deg,
-                       #ffffff 20deg 30deg, transparent 30deg 40deg,
-                       #ffffff 40deg 50deg, transparent 50deg 60deg,
-                       #ffffff 60deg 70deg, transparent 70deg 80deg,
-                       #ffffff 80deg 90deg, transparent 90deg 360deg);
-      background-size: 140px 140px, 140px 140px;
-    }
-
-    /* Tipografías dinámicas */
-    [data-font="fraunces"]{ font-family:"Fraunces", serif; }
-    [data-font="garamond"]{ font-family:"EB Garamond", serif; }
-    [data-font="georgia"]{ font-family: Georgia, "Times New Roman", serif; }
-
-    /* Panel flotante */
-    .customizer-toggle{
-      position: fixed; right: 18px; bottom: 18px; z-index: 9999;
-      background: var(--accent); color: #fff; border: none; border-radius: 999px;
-      width: 56px; height: 56px; box-shadow: var(--shadow); font-size: 22px; cursor: pointer;
-    }
-    .customizer{
-      position: fixed; right: 18px; bottom: 84px; z-index: 9999; width: 320px;
-      max-width: calc(100% - 36px); background: #fff; border: 3px solid var(--accent-2);
-      border-radius: 16px; box-shadow: var(--shadow); padding: 14px 16px; display: none;
-    }
-    .customizer.open{ display:block; }
-    .customizer h3{ margin: 4px 0 8px; font-family: "Shrikhand", cursive; color: var(--accent); }
-    .customizer label{ font-weight: 700; display:block; margin: 8px 0 6px; }
-    .row{ display:flex; gap:8px; flex-wrap:wrap; }
-    .row > *{ flex:1; min-width: 120px; }
-    .swatch{ display:inline-block; width:28px; height:28px; border-radius:6px; border:2px solid #0002; cursor:pointer; margin-right:6px; }
-    .help{ color:#6b5a76; font-size:.9rem; }
-    .inline-edit{ outline: 2px dashed transparent; }
-    .inline-edit[contenteditable="true"]:focus{ outline-color: var(--accent-2); background:#fff; }
+    :root{ --ink:#eee5f7; --bg:#17051b; --accent:#a21caf; --accent-2:#c77dff; --glow:#d94dff;
+      --radius:18px; --shadow:0 10px 24px rgba(162,28,175,.25), 0 2px 6px rgba(0,0,0,.15); }
+    body{ margin:0; background:var(--bg); color:var(--ink); font-family: Georgia, serif; line-height:1.6; }
+    header{ text-align:center; padding:72px 24px 56px; color:white; box-shadow:var(--shadow);
+      background: linear-gradient(135deg, #2a0830, #5c1a7a); }
+    .brand{ font-size:clamp(36px,6vw,72px); margin:0; text-shadow:0 6px 0 rgba(0,0,0,.2); font-weight:700; }
+    .subtitle{ max-width:900px; margin:.5rem auto 1rem; color:#f2d9ff; }
+    nav{ display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+    nav a{ color:#fff; text-decoration:none; background:var(--accent); border:3px solid var(--accent-2);
+      padding:10px 16px; border-radius:999px; font-weight:700; box-shadow:var(--shadow); }
+    nav a:hover{ background:var(--accent-2); }
+    .wrap{ max-width:1000px; margin:-40px auto 48px; padding:0 18px; }
+    .card{ background:rgba(20,5,24,.75); border:4px solid var(--accent-2); border-radius:var(--radius); padding:26px; box-shadow:var(--shadow); margin-bottom:20px; }
+    .card h2{ color:var(--accent); margin-top:0; }
+    .meta{ color:#cbb1db; font-size:.95rem; margin-bottom:10px; }
+    .inferno{ border-left:12px solid var(--glow); }
+    footer{ text-align:center; padding:38px 16px; color:#cdb6d9; background:linear-gradient(180deg,rgba(162,28,175,.15),rgba(162,28,175,.08)); border-top:4px solid var(--accent-2); }
   </style>
 </head>
 <body>
   <header>
-    <h1 class="brand inline-edit" id="site-title" contenteditable="true">Blog Literario · La Divina Comedia</h1>
-    <p class="subtitle inline-edit" id="site-subtitle" contenteditable="true">Un recorrido literario en 8 escritos, viajando por Infierno, Purgatorio y Paraíso</p>
+    <h1 class="brand">Blog Literario · La Divina Comedia</h1>
+    <p class="subtitle">Infierno en clave morada: un recorrido en 8 escritos</p>
     <nav>
-      <a href="#infierno">Infierno</a>
-      <a href="#purgatorio">Purgatorio</a>
-      <a href="#paradiso">Paraíso</a>
-      <a href="#contacto">Contacto</a>
+      <a href="#escrito1">Escrito 1</a>
+      <a href="#escrito2">Escrito 2</a>
+      <a href="#escrito3">Escrito 3</a>
+      <a href="#escrito4">Escrito 4</a>
+      <a href="#escrito5">Escrito 5</a>
+      <a href="#escrito6">Escrito 6</a>
+      <a href="#escrito7">Escrito 7</a>
+      <a href="#escrito8">Escrito 8</a>
     </nav>
   </header>
 
   <main class="wrap">
-    <!-- Primer escrito -->
-    <article class="card inferno" id="infierno">
+    <article class="card inferno" id="escrito1">
       <h2>Escrito 1 · Descendiendo al Infierno</h2>
       <p class="meta">Publicado el 8 de septiembre de 2025 — Sección: Infierno</p>
-      <p>En este primer escrito exploramos el inicio del viaje de Dante, acompañado de Virgilio, descendiendo hacia los círculos del Infierno. Un análisis que mezcla símbolos, versos y reflexiones actuales.</p>
+      <p>Primer análisis del viaje de Dante con Virgilio descendiendo al Infierno. Ambientación morada y símbolos clásicos.</p>
     </article>
 
-    <!-- Aquí podrás ir agregando más escritos -->
-    <article class="card purgatorio" id="purgatorio">
-      <h2>Escrito 2 · (Próximamente)</h2>
-      <p class="meta">Sección: Purgatorio</p>
-      <p>Aquí podrás publicar el segundo texto de tu serie cuando lo tengas listo.</p>
-    </article>
-
-    <article class="card paradiso" id="paradiso">
-      <h2>Escrito 3 · (Próximamente)</h2>
-      <p class="meta">Sección: Paraíso</p>
-      <p>Aquí podrás publicar el tercer texto, alusivo al ascenso hacia el Paraíso.</p>
-    </article>
-
-    <!-- ... hasta llegar a 8 escritos -->
+    <article class="card" id="escrito2"><h2>Escrito 2 · Próximamente</h2><p class="meta">Espacio reservado</p><p>Este espacio está reservado para el segundo escrito.</p></article>
+    <article class="card" id="escrito3"><h2>Escrito 3 · Próximamente</h2><p class="meta">Espacio reservado</p><p>Este espacio está reservado para el tercer escrito.</p></article>
+    <article class="card" id="escrito4"><h2>Escrito 4 · Próximamente</h2><p class="meta">Espacio reservado</p><p>Este espacio está reservado para el cuarto escrito.</p></article>
+    <article class="card" id="escrito5"><h2>Escrito 5 · Próximamente</h2><p class="meta">Espacio reservado</p><p>Este espacio está reservado para el quinto escrito.</p></article>
+    <article class="card" id="escrito6"><h2>Escrito 6 · Próximamente</h2><p class="meta">Espacio reservado</p><p>Este espacio está reservado para el sexto escrito.</p></article>
+    <article class="card" id="escrito7"><h2>Escrito 7 · Próximamente</h2><p class="meta">Espacio reservado</p><p>Este espacio está reservado para el séptimo escrito.</p></article>
+    <article class="card" id="escrito8"><h2>Escrito 8 · Próximamente</h2><p class="meta">Espacio reservado</p><p>Este espacio está reservado para el octavo escrito.</p></article>
 
     <section id="contacto" class="card">
       <h2>Contacto</h2>
       <p>¿Quieres comentar o colaborar en la serie de la Divina Comedia? Escríbeme:</p>
-      <ul>
-        <li>Correo: <a href="mailto:editor@divina-blog.example">editor@divina-blog.example</a></li>
-      </ul>
+      <ul><li>Correo: <a href="mailto:editor@divina-blog.example">editor@divina-blog.example</a></li></ul>
     </section>
   </main>
 
-  <footer>
-    <p>© 2025 · Blog Literario La Divina Comedia · Infierno, Purgatorio y Paraíso</p>
-  </footer>
-  <!-- Controles de personalización -->
-  <button class="customizer-toggle" aria-label="Abrir personalización" title="Personalizar">⚙️</button>
-  <aside class="customizer" aria-label="Panel de personalización" id="customizer">
-    <h3>Personaliza tu blog</h3>
-    <div class="row">
-      <div>
-        <label for="theme">Tema</label>
-        <select id="theme">
-          <option value="morado70s">Morado 70s</option>
-          <option value="inferno">Inferno</option>
-          <option value="purgatorio">Purgatorio</option>
-          <option value="paradiso">Paraíso</option>
-          <option value="sepia">Sepia</option>
-        </select>
-      </div>
-      <div>
-        <label for="font">Tipografía</label>
-        <select id="font">
-          <option value="fraunces">Fraunces (actual)</option>
-          <option value="garamond">EB Garamond</option>
-          <option value="georgia">Georgia</option>
-        </select>
-      </div>
-    </div>
-
-    <div class="row">
-      <div>
-        <label for="accent">Color acento</label>
-        <input id="accent" type="color" value="#7f2fb0" />
-      </div>
-      <div>
-        <label for="textSize">Tamaño de texto</label>
-        <input id="textSize" type="range" min="90" max="120" value="100" />
-      </div>
-    </div>
-
-    <div class="row">
-      <div>
-        <label><input id="toggleDaisies" type="checkbox" /> Fondo con margaritas</label>
-      </div>
-      <div>
-        <label><input id="saveTitle" type="checkbox" checked /> Guardar título/subtítulo</label>
-      </div>
-    </div>
-
-    <p class="help">Los cambios se guardan en este navegador (localStorage). Puedes restablecer con el botón de abajo.</p>
-    <div class="row">
-      <button id="resetBtn">Restablecer</button>
-    </div>
-  </aside>
-
-  <script>
-    (function(){
-      const root = document.documentElement;
-      const body = document.body;
-      const toggle = document.querySelector('.customizer-toggle');
-      const panel = document.getElementById('customizer');
-      const selTheme = document.getElementById('theme');
-      const selFont = document.getElementById('font');
-      const inputAccent = document.getElementById('accent');
-      const rngText = document.getElementById('textSize');
-      const chkDaisies = document.getElementById('toggleDaisies');
-      const chkSaveTitle = document.getElementById('saveTitle');
-      const resetBtn = document.getElementById('resetBtn');
-      const titleEl = document.getElementById('site-title');
-      const subtitleEl = document.getElementById('site-subtitle');
-
-      const STORAGE_KEY = 'blog70s:settings';
-
-      function save(){
-        const data = {
-          theme: selTheme.value,
-          font: selFont.value,
-          accent: inputAccent.value,
-          textSize: rngText.value,
-          daisies: chkDaisies.checked,
-          title: chkSaveTitle.checked ? titleEl.innerText : null,
-          subtitle: chkSaveTitle.checked ? subtitleEl.innerText : null
-        };
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-      }
-
-      function apply(data){
-        if(!data) return;
-        document.documentElement.setAttribute('data-theme', data.theme || 'morado70s');
-        document.documentElement.setAttribute('data-font', data.font || 'fraunces');
-        if(data.accent){ root.style.setProperty('--accent', data.accent); }
-        if(data.textSize){ root.style.fontSize = data.textSize + '%'; }
-        body.classList.toggle('daisies', !!data.daisies);
-        if(data.title){ titleEl.innerText = data.title; }
-        if(data.subtitle){ subtitleEl.innerText = data.subtitle; }
-        selTheme.value = data.theme || 'morado70s';
-        selFont.value = data.font || 'fraunces';
-        inputAccent.value = data.accent || '#7f2fb0';
-        rngText.value = data.textSize || 100;
-        chkDaisies.checked = !!data.daisies;
-      }
-
-      function load(){
-        try{ return JSON.parse(localStorage.getItem(STORAGE_KEY)); }catch(e){ return null; }
-      }
-
-      // Eventos
-      toggle.addEventListener('click', ()=> panel.classList.toggle('open'));
-      selTheme.addEventListener('change', ()=>{ document.documentElement.setAttribute('data-theme', selTheme.value); save(); });
-      selFont.addEventListener('change', ()=>{ document.documentElement.setAttribute('data-font', selFont.value); save(); });
-      inputAccent.addEventListener('input', ()=>{ root.style.setProperty('--accent', inputAccent.value); save(); });
-      rngText.addEventListener('input', ()=>{ root.style.fontSize = rngText.value + '%'; save(); });
-      chkDaisies.addEventListener('change', ()=>{ body.classList.toggle('daisies', chkDaisies.checked); save(); });
-      [titleEl, subtitleEl].forEach(el=> el.addEventListener('input', ()=>{ if(chkSaveTitle.checked) save(); }));
-      resetBtn.addEventListener('click', ()=>{
-        localStorage.removeItem(STORAGE_KEY);
-        location.reload();
-      });
-
-      // Inicialización
-      const data = load();
-      apply(Object.assign({ theme:'morado70s', font:'fraunces', accent:'#7f2fb0', textSize:100, daisies:true }, data));
-    })();
-  </script>
+  <footer><p>© 2025 · Blog Literario La Divina Comedia · Serie de 8 escritos</p></footer>
 </body>
 </html>
